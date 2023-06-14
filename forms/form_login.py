@@ -1,7 +1,7 @@
 import tkinter as tk 
 from PIL import ImageTk, Image
 from tkinter import ttk, messagebox
-from form_menu_jugador import MasterPanel
+from forms.form_menu_jugador import menu_jugador
 
 class App:
     def __init__(self):
@@ -41,12 +41,7 @@ class App:
         contraseña = self.contraseña.get()
         if (usuario == "root" and contraseña == "1234"):
             self.ventana.destroy()
-            MasterPanel()
+            menu_jugador
         
         else:
             messagebox.showerror(message="Usuario o contraseña incorrecta")
-
-
-
-
-App()

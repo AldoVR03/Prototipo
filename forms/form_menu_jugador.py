@@ -18,5 +18,3 @@ class menu_jugador:
     def quitFullScreen(self, event):
         self.fullScreenState = False
         self.window.attributes("-fullscreen", self.fullScreenState)
-
-menu_jugador()
