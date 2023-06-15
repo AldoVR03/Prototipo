@@ -6,19 +6,14 @@ class DB:
             host='localhost',
             user='root',
             password='',
-            db='prueba_prototipo'
+            db='aaaaaaaa'
         )
         self.cursor = self.connection.cursor()
-        print("Correcto")
     
-    def nuevo_registro(self, user, passw):
-        self.user = user
-        self.passw = passw
-
-        sql = "INSERT INTO cuanta (usuario, contraseña) VALUES (%s,%s)".format(self.user,self.passw)
+    def nuevo_registro(self, usuario, apodo, contraseña):
+        sql = "INSERT INTO `jugador` (NOMBRE_USUARIO,APODO,CLAVE) VALUES('{}','{}','{}')".format(usuario, apodo, contraseña)
         self.cursor.execute(sql)
         self.connection.commit()
-        print("ok")
+
 
 obj = DB()
-obj.nuevo_registro("hola","asdasd")
