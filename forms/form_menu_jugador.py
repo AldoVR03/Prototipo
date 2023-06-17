@@ -9,11 +9,6 @@ class menu_jugador:
         self.fullScreenState = False
         self.window.bind("<F11>", self.toggleFullScreen)
         self.window.bind("<Escape>", self.quitFullScreen)
-
-        imagen_registro = ImageTk.PhotoImage(Image.open('./img/fondo_registro.png'))
-        lable_registro = tk.Label(image=imagen_registro)
-        lable_registro.pack()
-
         self.window.mainloop()
 
     def toggleFullScreen(self, event):

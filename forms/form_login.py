@@ -1,5 +1,5 @@
 import tkinter as tk 
-from PIL import ImageTk, Image
+
 from tkinter import ttk, messagebox
 from db.data import *
 from forms.form_menu_jugador import menu_jugador
@@ -20,9 +20,6 @@ class App:
         self.ventana.resizable(width=0, height=0)#Bloqueo de maximizar ventana
 
         self.createProgressBar()
-        imagen_sesion = ImageTk.PhotoImage(Image.open('./img/fondo_login.png'))
-        label_sesion = tk.Label(image=imagen_sesion)
-        label_sesion.pack(side="right")
 
         titulo = tk.Label(text="Inicio de sesión", bg="#FFFFFF",font=("Times", 14))
         titulo.pack(padx=5,pady=40)
@@ -56,6 +53,9 @@ class App:
         Registrarse = tk.Button(text="Registrarse", font=("Times",14), bg="#FFFFFF", command=self.registrar)
         Registrarse.pack(pady=15)
 
+        salida = tk.Button(text="Salir",font=("Times",14), bg="#FFFFFF", command=self.ventana.destroy)
+        salida.pack()
+
         self.ventana.mainloop()
         
     def verificarInicioSesion(self, usuario1, contraseña1):
@@ -75,9 +75,9 @@ class App:
         xd = ttk.Style()
         xd.theme_use('clam')
         xd.configure("red.Horizontal.TProgressbar", foreground='red', background='blue')
-        p = Progressbar(style="red.Horizontal.TProgressbar",orient="horizontal",length=500,mode="determinate",takefocus=True,maximum=10000)
+        p = Progressbar(style="red.Horizontal.TProgressbar",orient="horizontal",length=500,mode="determinate",takefocus=True,maximum=1000)
         p.pack(padx=50, pady=50)            
-        for i in range(10000):                
+        for i in range(1000):                
             p.step()            
             self.ventana.update()
         p.destroy()
