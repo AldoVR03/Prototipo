@@ -1,7 +1,7 @@
 import tkinter as tk
 from PIL import ImageTk, Image
 
-class menu_jugador:
+class menu_gm:
 
     def __init__(self):
         self.window = tk.Tk()
