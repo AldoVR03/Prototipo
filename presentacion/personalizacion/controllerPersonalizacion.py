@@ -6,16 +6,20 @@ from presentacion.personalizacion.customView import CustomView
 from logica.PersonalizacionBusinessDelegate import PersonalizacionBusinessDelegate
 class ControllerPersonalizacion():
 
-    def __init__(self,root) -> None:
+    def __init__(self,window) -> None:
         pub.subscribe(self.eventSubInicio, "INICIO-PERSONALIZACION")
-        self.root=root
+        self.window=window
+        self.root=self.window.root
+        self.canvas=tk.Canvas(self.root, width=self.window.bgWidth, height=self.window.bgHeight,bd=0,borderwidth=0,highlightthickness=0)
+        
         self.marcoImage=tk.PhotoImage(file=cons.MARCO_PERSONALIZACION)
         self.ancho_marco = self.marcoImage.width()
         self.alto_marco = self.marcoImage.height()
-        self.x = (self.root.bgWidth - self.ancho_marco) // 2
-        self.y = (self.root.bgHeight - self.alto_marco) // 2
+        self.x = (self.window.bgWidth - self.ancho_marco) // 2
+        self.y = (self.window.bgHeight - self.alto_marco) // 2
+
         self.jugadorHandler=None
-        self.oCustomView=CustomView(self.root.marcoFrame)
+        self.oCustomView=CustomView(self.canvas)
         self.personalizacionBusinessDelegate=PersonalizacionBusinessDelegate()
         # Eventos
         self.oCustomView.saveBtn.configure(command=self.sendNewPlayerToMenu)
@@ -28,6 +32,12 @@ class ControllerPersonalizacion():
         self.oCustomView.radioComponent.radiobutton4.configure(command=self.changeSkinColor)
         self.oCustomView.radioComponent.radiobutton5.configure(command=self.changeSkinColor)
         # self.marcoFrame=tk.Frame(self.mainCanvas,width=100,height=100,bg="#8f563b",bd=0)
+        # self.root.mainCanvas.create_image(0, 0, anchor="nw", image=self.root.backgroundImage)
+        self.fondoImageReference=self.canvas.create_image(0, 0, anchor="nw", image=self.window.backgroundImage)
+        self.marcoImageReference=self.canvas.create_image(self.x, self.y, anchor="nw", image=self.marcoImage)
+    
+
+      
     def eventSubInicio(self,msg):
         print(f"CONTROLADOR-PERSONALIZACION: SEÑAL RECIBIDA DE {msg[0]}")
         # self.root.setImage("images/marco-354x220_200%.png")
@@ -38,15 +48,35 @@ class ControllerPersonalizacion():
 
     def publishEventPersonlizacion(self):
         msg="CONTROLADOR-PERSONALIZACION"
-        self.oCustomView.hide()
+        # self.oCustomView.hide()
+        self.canvas.pack_forget()
+        self.jugadorHandler.setJugadorObject(None)
+        self.oCustomView.personajeComponent.resetColors()
         pub.sendMessage("PERSONALIZACION-INICIO",msg=msg)
     
     def sendNewPlayerToMenu(self):
-        print(self.oCustomView.nombrePersonajeEntry.get())
-        print(self.oCustomView.razaPersonajeCombobox.get())
-        print(self.oCustomView.clasePersonajeCombobox.get())
-        print(self.oCustomView.personajeComponent.getCurrentColors())
-        pub.sendMessage("NEW-PLAYER",msg=self.jugadorHandler)
+        nombrePersonaje=(self.oCustomView.nombrePersonajeEntry.get())
+        raza=(self.oCustomView.razaPersonajeCombobox.get())
+        clase=(self.oCustomView.clasePersonajeCombobox.get())
+        currentColors=(self.oCustomView.personajeComponent.getCurrentColors())
+        print(currentColors)
+
+        if(len(self.oCustomView.nombrePersonajeEntry.get())>=8):
+            pub.sendMessage("NEW-PLAYER",msg=self.jugadorHandler)
+            self.canvas.pack_forget()
+            self.personalizacionBusinessDelegate.setServiceType("PERSONAJE")
+          
+            if(self.personalizacionBusinessDelegate.saveCharacter(self.jugadorHandler.getJugadorObject().getId(),nombrePersonaje,raza,clase,currentColors["PELO"],currentColors["PIEL"],currentColors["OJOS"])):
+                print("Personaje guardado con éxito!!")
+                # Enviar al menu
+                # self.oCustomView.hide()
+                # self.canvas.pack_forget()
+                
+            else:
+                print("No se ha podido guardar")
+
+        else:
+            print("Mínimo 8 caracteres")
     def changeHairColor(self):
         hairColor=askcolor()[0]
         if hairColor==None:
@@ -64,6 +94,7 @@ class ControllerPersonalizacion():
         
         self.oCustomView.personajeComponent.cambiarColorParte(self.oCustomView.personajeComponent.getOjosId(),
                                                               self.oCustomView.personajeComponent.RUTA_IMAGEN_OJOS,eyeColor)
+        
     def changeSkinColor(self):
         skinColor=tuple([int(value) for value in self.oCustomView.radioComponent.selection.get().split(",")])
         print(skinColor)
@@ -76,11 +107,10 @@ class ControllerPersonalizacion():
                                                               self.oCustomView.personajeComponent.RUTA_IMAGEN_CUERPO,skinColor)
     
     def show(self):
-        self.root.mainCanvas.pack()
-        self.root.mainCanvas.create_image(0, 0, anchor="nw", image=self.root.backgroundImage)
-        self.root.mainCanvas.create_image(self.x, self.y, anchor="nw", image=self.marcoImage)
-        self.root.marcoFrame.place(relx=0.5, rely=0.5, anchor="center")
-
+        print("HOLA")
+        self.canvas.pack()
+        self.window.marcoFrame.place(relx=0.5, rely=0.5, anchor="center")
+ 
         self.oCustomView.show()
         
 

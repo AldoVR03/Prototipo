@@ -71,9 +71,16 @@ class imagenPersonaje():
         if build:
             self.construirPersonaje()
 
-        self.__colorPelo=None
-        self.__colorOjos=None
-        self.__colorPiel=None
+        self.__colorPelo=(0,0,0,255)
+        self.__colorOjos=(0,0,0,255)
+        self.__colorPiel=(238,195,154,255)
+
+    def resetColors(self):
+        self.__colorPelo=(0,0,0,255)
+        self.__colorOjos=(0,0,0,255)
+        self.__colorPiel=(238,195,154,255)
+
+        self.construirPersonaje()
 
     def setColorPelo(self,hairColor):
         self.__colorPelo=hairColor

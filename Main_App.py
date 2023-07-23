@@ -30,7 +30,7 @@ class App():
         # self.alto_marco = self.marcoImage.height()
         # self.x = (self.bgWidth - self.ancho_marco) // 2
         # self.y = (self.bgHeight - self.alto_marco) // 2
-        self.marcoFrame=tk.Frame(self.mainCanvas,width=100,height=100,bg="black",bd=0)
+        self.marcoFrame=tk.Frame(self.mainCanvas,bd=0)
         self.pos_x = (self.root.winfo_screenwidth() // 2) - (self.bgWidth // 2)
         self.pos_y = (self.root.winfo_screenheight() // 2) - (self.bgHeight // 2)
         self.root.geometry(f"{self.bgWidth}x{self.bgHeight}+{self.pos_x}+{self.pos_y}")

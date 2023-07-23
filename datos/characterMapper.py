@@ -31,6 +31,12 @@ class CharacterMapper(dbConnection):
                 characterList.append(characterModels[i])
 
         return characterList
+    def convertToDictRow(self,idJugador,nombrePersonaje,raza,clase,hairColor,skinColor,eyesColor,atq,vel,defe,vida):
+        row=(idJugador,nombrePersonaje,raza,clase,vida,atq,defe,vel,hairColor,skinColor,eyesColor)
+        tableNames=self.oCharacterDAO.getDictTableNames()
+        
+        result = dict(zip(tableNames,row))
+        return result
             # print("query:", queryResult)
             # characterModel.setId(queryResult[0])
             # characterModel.setNombreUsuario(queryResult[1])

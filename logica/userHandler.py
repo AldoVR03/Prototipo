@@ -14,6 +14,8 @@ class JugadorHandler():
         self.__jugadorObject.addManyCharacters(msg)
     def getJugadorObject(self):
         return self.__jugadorObject
+    def setJugadorObject(self,re):
+        self.__jugadorObject=re
         
         
 class GameMasterHandler():

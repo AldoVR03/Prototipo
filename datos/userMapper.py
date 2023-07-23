@@ -36,6 +36,7 @@ class GameMasterMapper():
             # jugadorModel.clave(queryResult[4])
             print(vars(gameMasterModel))
             return gameMasterModel
+    
 
 
 

@@ -39,7 +39,21 @@ class PersonalizacionBusinessDelegate:
                 print("El servicio solicitado no está disponible.")
         else:
             print("No se ha configurado el servicio o el mecanismo de lookup.")
-
+    def saveCharacter(self,idJugador,nombrePersonaje,raza,clase,hairColor,skinColor,eyesColor):
+        print(self.serviceLookup,self.serviceType)
+        if self.serviceLookup is not None and self.serviceType is not None:
+            service = self.serviceLookup.getService(self.serviceType)
+            if service is not None:
+                result=service.saveCharacterById(idJugador,nombrePersonaje,raza,clase,hairColor,skinColor,eyesColor)
+                print("result: ",result)
+                return result
+                    
+                
+            
+            else:
+                print("El servicio solicitado no está disponible.")
+        else:
+            print("No se ha configurado el servicio o el mecanismo de lookup.")
 class PersonalizacionServiceLookup:
     def __init__(self) -> None:
         self.services={}

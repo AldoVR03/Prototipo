@@ -18,9 +18,9 @@ class CustomView():
         # self.alto_marco = self.marcoImage.height()
         # self.x = (self.bgWidth - self.ancho_marco) // 2
         # self.y = (self.bgHeight - self.alto_marco) // 2
-
+        self.container=tk.Frame(root)
         # Frames
-        self.mainFrame=tk.Frame(self.root,width=500,height=300,bd=0, bg="brown")
+        self.mainFrame=tk.Frame(self.container,width=500,height=300,bd=0, bg="brown")
         self.leftFrame=tk.Frame(self.mainFrame,width=320,height=360,bd=0, bg="#8f563b")
         self.rightFrame=tk.Frame(self.mainFrame,width=320,height=360,bg="#8f563b",bd=0)
         
@@ -70,8 +70,10 @@ class CustomView():
 
         
         # self.label=tk.Label(self.leftFrame,text="hola")
-
+    def resetPersonajeComponent(self):
+        self.personajeComponent=personaje.imagenPersonaje(self.leftContentFrame)
     def show(self):
+        self.reset()
         # Background
         # self.mainCanvas.pack()
 
@@ -79,6 +81,7 @@ class CustomView():
         # self.mainCanvas.create_image(self.x, self.y, anchor="nw", image=self.marcoImage)
         
         # Frames
+        self.container.place(relx=0.5, rely=0.5, anchor="center")
         # self.mainFrame.place(relx=0.5, rely=0.5, anchor="center")
         self.mainFrame.pack()
         self.leftFrame.grid(row=0,column=0)
@@ -89,6 +92,7 @@ class CustomView():
         # Widgets
         self.customLabel.pack(**cons.BUTTON_LAYOUT)
         self.nombrePersonajeLabel.pack(**cons.BUTTON_LAYOUT)
+   
         self.nombrePersonajeEntry.pack(**cons.BUTTON_LAYOUT)
 
         self.razaPersonajeLabel.pack()
@@ -119,6 +123,10 @@ class CustomView():
         # self.marcoFrame.place(relx=0.5, rely=0, anchor="center")
         # self.marcoFrame.grid(column=0,row=0)
 #         # self.label.pack()
+    def reset(self):
+        # Reset
+        self.nombrePersonajeEntry.delete(0,tk.END)
+        
 # root=tk.Tk()
 # p1=CustomView(root)
 # p1.show()

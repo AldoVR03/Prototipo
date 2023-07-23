@@ -118,11 +118,13 @@ class ControllerInicio():
                     if(self.hasCharacter()):
                         
                         print("Selección de personajes")  #Jugador con un personaje como mínimo
+                        self.mainCanvas.pack_forget()
                         pub.sendMessage("NO-NEW-PLAYER",msg=self.jugadorHandler)                        
                     else:
                         print("Personalización del primer personaje") #Jugador con cero personajes
                         msg=["CONTROLADOR-INICIO",self.jugadorHandler]
                         self.oLogin.loginFrame.pack_forget()
+                        self.mainCanvas.pack_forget()
                         pub.sendMessage("INICIO-PERSONALIZACION", msg=msg)
                         
             else:
@@ -158,7 +160,7 @@ class ControllerInicio():
         nickname=(self.oRegistro.signInNicknameEntry.get())
         password=(self.oRegistro.signInPasswordEntry.get())
         userType=(self.oRegistro.radioVar.get())
-        if(username == "" or password == "" or nickname == ""):
+        if(username == "" or password == "" or nickname == "" or len(username) <7 or len(nickname) <7 or len(password) <7):
             return
         if(self.validarDatosRegistro(username,nickname,password)):
             if(self.autenticarDatosRegistro(username,nickname,userType)):
