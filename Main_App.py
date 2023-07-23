@@ -5,6 +5,7 @@ import presentacion.constants as consts
 # from presentacion.inicio.passwordView import *
 from presentacion.inicio.controllerInicio import *
 from presentacion.personalizacion.controllerPersonalizacion import *
+from presentacion.menu.controllerMenu import ControllerMenu
 
 
 
@@ -45,7 +46,7 @@ p1=App()
 # p1.showLoginFrame()
 oControllerInicio=ControllerInicio(p1)
 oControllerPersonalizacion=ControllerPersonalizacion(p1)
-oControllerMenu=None
+oControllerMenu=ControllerMenu(p1)
 oControllerInicio.showLoginFrame()
 # p1.showSignInFrame()
 p1.root.mainloop()

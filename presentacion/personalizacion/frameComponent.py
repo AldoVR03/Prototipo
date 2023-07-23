@@ -64,20 +64,21 @@ class FrameComponent():
 
         self.skinFrame=tk.Frame(root, bg="#8f563b")
         
-        self.skinColorLabel=tk.Label(self.skinFrame,text="Color de piel", bg="#8f563b")
+        self.skinColorLabel=tk.Label(self.skinFrame,text="Color de piel", bg="#8f563b")    
         # Crear los Radiobutton con la imagen personalizada
-        self.radiobutton5 = Radiobutton(self.skinFrame, text="Opción 1", variable=self.selection, value="opcion1", command=self.change_selection, style='Custom.TRadiobutton5')
-        self.radiobutton4 = Radiobutton(self.skinFrame, text="Opción 2", variable=self.selection, value="opcion2", command=self.change_selection, style='Custom.TRadiobutton4')
-        self.radiobutton3 = Radiobutton(self.skinFrame, text="Opción 3", variable=self.selection, value="opcion3", command=self.change_selection, style='Custom.TRadiobutton3')
-        self.radiobutton2 = Radiobutton(self.skinFrame, text="Opción 4", variable=self.selection, value="opcion4", command=self.change_selection, style='Custom.TRadiobutton2')
-        self.radiobutton1 = Radiobutton(self.skinFrame, text="Opción 5", variable=self.selection, value="opcion5", command=self.change_selection, style='Custom.TRadiobutton1')
+        self.radiobutton5 = Radiobutton(self.skinFrame, text="Opción 1", variable=self.selection, value="48,27,23,255", command=self.change_selection, style='Custom.TRadiobutton5')
+        self.radiobutton4 = Radiobutton(self.skinFrame, text="Opción 2", variable=self.selection, value="143,86,59,255", command=self.change_selection, style='Custom.TRadiobutton4')
+        self.radiobutton3 = Radiobutton(self.skinFrame, text="Opción 3", variable=self.selection, value="223,113,38,255", command=self.change_selection, style='Custom.TRadiobutton3')
+        self.radiobutton2 = Radiobutton(self.skinFrame, text="Opción 4", variable=self.selection, value="217,160,102,255", command=self.change_selection, style='Custom.TRadiobutton2')
+        self.radiobutton1 = Radiobutton(self.skinFrame, text="Opción 5", variable=self.selection, value="238,195,154,255", command=self.change_selection, style='Custom.TRadiobutton1')
         
 
         
 
     def change_selection(self):
         selected_option = self.selection.get()
-        print("Selected option:", selected_option)
+
+        return tuple([int(value) for value in selected_option.split(",")])
         
     def show(self):
         self.skinFrame.pack()

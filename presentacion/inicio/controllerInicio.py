@@ -116,7 +116,9 @@ class ControllerInicio():
                     #  si tiene como mínimo un personaje va directo al menu
                     #  si tiene cero personajes se le lleva a crear un personaje
                     if(self.hasCharacter()):
-                         print("Selección de personajes")  #Jugador con un personaje como mínimo
+                        
+                        print("Selección de personajes")  #Jugador con un personaje como mínimo
+                        pub.sendMessage("NO-NEW-PLAYER",msg=self.jugadorHandler)                        
                     else:
                         print("Personalización del primer personaje") #Jugador con cero personajes
                         msg=["CONTROLADOR-INICIO",self.jugadorHandler]
@@ -176,6 +178,11 @@ class ControllerInicio():
         else:
             self.businessDelegate.serviceType="JUGADOR"
         return self.businessDelegate.checkRegisterUser(username,nickname)
+    
+
+
+
+    
          
          
             

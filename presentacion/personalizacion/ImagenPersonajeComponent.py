@@ -20,10 +20,10 @@ class imagenPersonaje():
 
     #Variables estáticas: son variables que pueden ser accedidas por cualquier objetos
     #También se les conoce como variables de clase
-    RUTA_IMAGEN_PELO = ("pelo2-removebg-preview.png")
-    RUTA_IMAGEN_CUERPO = ("cuerpo.png")
-    RUTA_IMAGEN_OJOS = ("ojos.png")
-    RUTA_IMAGEN_ROPA = ("ropa.png")
+    RUTA_IMAGEN_PELO = ("images/pelo2-removebg-preview.png")
+    RUTA_IMAGEN_CUERPO = ("images/cuerpo.png")
+    RUTA_IMAGEN_OJOS = ("images/ojos.png")
+    RUTA_IMAGEN_ROPA = ("images/ropa.png")
     # 150X
     COORDS_X=90
     COORDS_Y_CUERPO=150
@@ -31,10 +31,11 @@ class imagenPersonaje():
     COORDS_Y_OJOS=100
     COORDS_Y_ROPA=225
 
-    SKIN_COLORS=[{"colorHead":(217,160,102,255),"colorNeck":(203,144,83,255),"colorHand":(203,144,83,255)},
+    SKIN_COLORS=[{"colorHead":(238,195,154,255),"colorNeck":(231,169,111,255),"colorHand":(231,169,111,255)},
+                 {"colorHead":(217,160,102,255),"colorNeck":(203,144,83,255),"colorHand":(203,144,83,255)},
                  {"colorHead":(223,113,38,255),"colorNeck":(186,91,26,255),"colorHand":(186,91,26,255)},
                  {"colorHead":(143,86,59,255),"colorNeck":(125,70,44,255),"colorHand":(125,70,44,255)},
-                 {"colorHead":(69,40,60,255),"colorNeck":(56,36,50,255),"colorHand":(56,36,50,255)}]
+                 {"colorHead":(48,27,23,255),"colorNeck":(72,42,36,255),"colorHand":(72,42,36,255)}]
     #Método constructor
     def __init__(self, frame=None,build=True,canvas=None) -> None:
         if(canvas is  None):
@@ -65,14 +66,30 @@ class imagenPersonaje():
         self.__colorActualCabeza=(238,195,154,255)
         self.__colorActualCuello=(217,160,102,255)
         self.__colorActualManos=(217,160,102,255)
-
         self.__colorActualOjos=(0,0,0,255)
+
         if build:
             self.construirPersonaje()
 
+        self.__colorPelo=None
+        self.__colorOjos=None
+        self.__colorPiel=None
+
+    def setColorPelo(self,hairColor):
+        self.__colorPelo=hairColor
+    
+    def setColorOjos(self,eyesColor):
+        self.__colorOjos=eyesColor
+    
+    def setColorPiel(self,skinColor):
+        self.__colorPiel=skinColor
+    
+
     def setCanvas(self,canvas):
         self.canvas=canvas
-        
+    def getCurrentColors(self):
+        return {"PELO":self.__colorPelo,"OJOS":self.__colorOjos,
+                "PIEL":self.__colorPiel}
     def setRopa(self,ropaImage=None):
         if(ropaImage is None):
             ropaImage=Image.open(cons.RUTA_IMAGEN_ROPA)
