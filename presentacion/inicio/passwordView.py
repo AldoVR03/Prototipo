@@ -22,8 +22,8 @@ class PasswordView():
         self.newPassEntry=tk.Entry(self.passwordFrame,bg="#d9a066",bd=0,font=consts.FONT_FAMILY1)
  
         # Radio Button
-        self.jugadorRadioBtn=ttk.Radiobutton(self.radioButtonFrame, text="Jugador", value=1,variable=self.radioVar )
-        self.gmRadioBtn=ttk.Radiobutton(self.radioButtonFrame, text="GM", value=2,variable=self.radioVar )
+        self.jugadorRadioBtn=ttk.Radiobutton(self.radioButtonFrame, text="Jugador", value=1,variable=self.radioVar, takefocus=False )
+        self.gmRadioBtn=ttk.Radiobutton(self.radioButtonFrame, text="GM", value=2,variable=self.radioVar, takefocus=False )
         # Button
         self.passBtn=tk.Button(self.buttonFrame,text="Cambiar contraseña",font=consts.FONT_FAMILY1)
         self.passwordBackBtn=tk.Button(self.buttonFrame,text="Volver",font=consts.FONT_FAMILY1)

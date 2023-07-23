@@ -82,3 +82,23 @@ class JugadorDAO(dbConnection):
             return existe
         except Exception as e:
                 print("Error : "+str(e.args))
+
+    def getPlayerByUserName(self,username):
+        sql=''' 
+            SELECT *
+            FROM JUGADOR
+            WHERE NOMBRE_USUARIO = '{}' 
+        '''.format(username)
+        try:    
+            existe = False
+            self.cursor.execute(sql)
+            consulta = self.cursor.fetchone()
+            # print(consulta)
+            # if (consulta):
+            #     existe = True
+            # return existe
+            return consulta
+        except Exception as e:
+                print("Error : "+str(e.args))
+        print("JUGADOR-PATH")
+        # Transformar a objeto

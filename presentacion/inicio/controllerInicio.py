@@ -5,11 +5,13 @@ from presentacion.inicio.loginView import *
 from presentacion.inicio.signInView import *
 from presentacion.inicio.passwordView import *
 import re
+from logica.userHandler import JugadorHandler
 from logica.businessDelegate import InicioBusinessDelegate
 class ControllerInicio():
     def __init__(self,p1) -> None:
 
         pub.subscribe(self.eventSubPersonalizacion, "PERSONALIZACION-INICIO")
+        self.jugadorHandler=JugadorHandler()
         self.businessDelegate=InicioBusinessDelegate()
         self.marcoFrame=p1.marcoFrame
         # self.contentFrame=p1.contentFrame
@@ -114,8 +116,9 @@ class ControllerInicio():
                     #  si tiene como mínimo un personaje va directo al menu
                     #  si tiene cero personajes se le lleva a crear un personaje
                     if(self.hasCharacter()):
-                         print("MENU")
+                         print("Selección de personajes")  #Jugador con un personaje como mínimo
                     else:
+                        print("Personalización del primer personaje") #Jugador con cero personajes
                         msg="CONTROLADOR-INICIO"
                         self.oLogin.loginFrame.pack_forget()
                         pub.sendMessage("INICIO-PERSONALIZACION", msg=msg)

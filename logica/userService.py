@@ -9,7 +9,7 @@ class JugadorService():
         
     def checkUser(self, username, password):
         exists=self.oJugadorDAO.existeJugador(username,password)
-        jugador=self.oJugadorMapper.getPlayerByUserName(username,JugadorModel(None,None,None,None,None))
+        jugador=self.oJugadorMapper.convertToPlayerModel(username,JugadorModel(None,None,None,None,None))
         return exists, jugador
     def registerUser(self, username, nickname, password):
         check=self.oJugadorDAO.registrarJugador(username,nickname,password)
