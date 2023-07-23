@@ -46,4 +46,29 @@ class GameMasterDAO(dbConnection):
         except Exception as e:
             print("Error : "+str(e.args))
 
+    def getGameMasterByUsername(self,username):
+        sql=''' 
+            SELECT *
+            FROM GM
+            WHERE NOMBRE_USUARIO = '{}' 
+        '''.format(username)
+        try:    
+            existe = False
+            self.cursor.execute(sql)
+            columns=[column[0] for column in self.cursor.description]
+            consulta = self.cursor.fetchone()
+            
+            results = [dict(zip(columns, row)) for row in (consulta,)]
+            
+            
+            # print(consulta)
+            # if (consulta):
+            #     existe = True
+            # return existe
+            return results
+        except Exception as e:
+                print("Error : "+str(e.args))
+        
+        # Transformar a objeto
+
     

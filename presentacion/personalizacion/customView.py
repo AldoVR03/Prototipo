@@ -60,7 +60,7 @@ class CustomView():
         
         self.changeHairColorBtn=tk.Button(self.leftContentFrame,text="Color de pelo", font=cons.FONT_FAMILY0)
         self.changeEyesColorBtn=tk.Button(self.leftContentFrame,text="Color de ojos", font=cons.FONT_FAMILY0)
-        self.changeSkinColorBtn=tk.Button(self.leftContentFrame,text="Color de piel", font=cons.FONT_FAMILY0)
+        # self.changeSkinColorBtn=tk.Button(self.leftContentFrame,text="Color de piel", font=cons.FONT_FAMILY0)
 
 
         
@@ -105,13 +105,14 @@ class CustomView():
 
         self.changeEyesColorBtn.pack(side="left", **cons.BUTTON_LAYOUT,pady=5)
         self.changeHairColorBtn.pack(side="left", **cons.BUTTON_LAYOUT,padx=2,pady=5)
-        self.changeSkinColorBtn.pack(side="left", **cons.BUTTON_LAYOUT,pady=5)
+        # self.changeSkinColorBtn.pack(side="left", **cons.BUTTON_LAYOUT,pady=5)
 
         self.btnFrame.pack(**cons.BUTTON_LAYOUT,pady=10)
         self.saveBtn.pack(side="top", **cons.BUTTON_LAYOUT,pady=2)
         self.customBackBtn.pack(side="bottom",**cons.BUTTON_LAYOUT,pady=2)
 
-
+    def hide(self):
+        self.mainFrame.pack_forget()
 
         # self.rightTopFrame.grid(row=0,column=0)
         # self.rightBottomFrame.grid(row=1,column=0)

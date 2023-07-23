@@ -92,12 +92,17 @@ class JugadorDAO(dbConnection):
         try:    
             existe = False
             self.cursor.execute(sql)
+            columns=[column[0] for column in self.cursor.description]
             consulta = self.cursor.fetchone()
+            
+            results = [dict(zip(columns, row)) for row in (consulta,)]
+            
+            
             # print(consulta)
             # if (consulta):
             #     existe = True
             # return existe
-            return consulta
+            return results
         except Exception as e:
                 print("Error : "+str(e.args))
         print("JUGADOR-PATH")

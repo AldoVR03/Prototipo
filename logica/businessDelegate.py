@@ -1,4 +1,4 @@
-from logica.userService import JugadorService, GmService
+from logica.userService import JugadorService, GameMasterService
 ##CONSIDERAR CREAR UN GESTOR DE OBJETOS JUGADORES Y OTROS TIPOS DE GESTORES
 
 from pubsub import pub
@@ -8,7 +8,7 @@ class InicioBusinessDelegate:
         self.serviceType = serviceType
         self.jugador=None
         self.serviceLookup.registerService("JUGADOR",JugadorService())
-        self.serviceLookup.registerService("GM",GmService())
+        self.serviceLookup.registerService("GM",GameMasterService())
 
     # def setServiceLookup(self, service_lookup):
     #     self.service_lookup = service_lookup
@@ -24,8 +24,11 @@ class InicioBusinessDelegate:
                 if result[1]:
                     self.jugador=result[1]
                     print("Enviando datos a JugadorHandler....")
-                    pub.sendMessage("PLAYER-OBJECT", msg=result[1])
-                    pub.sendMessage("CHARACTER-OBJECT", msg=result[1].getId())
+                    if(self.serviceType=="GM"):
+                        pub.sendMessage("GAMEMASTER-OBJECT",msg=result[1])
+                    else:
+                        pub.sendMessage("PLAYER-OBJECT", msg=result[1])
+                        pub.sendMessage("CHARACTER-OBJECT", msg=result[1].getId())
                 return result[0]
             
             else:

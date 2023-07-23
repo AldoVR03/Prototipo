@@ -13,7 +13,7 @@ class ControllerPersonalizacion():
         self.alto_marco = self.marcoImage.height()
         self.x = (self.root.bgWidth - self.ancho_marco) // 2
         self.y = (self.root.bgHeight - self.alto_marco) // 2
-        
+        self.userHandler=None
         self.oCustomView=CustomView(self.root.marcoFrame)
         self.personalizacionBusinessDelegate=PersonalizacionBusinessDelegate()
         # Eventos
@@ -21,13 +21,16 @@ class ControllerPersonalizacion():
 
         # self.marcoFrame=tk.Frame(self.mainCanvas,width=100,height=100,bg="#8f563b",bd=0)
     def eventSubInicio(self,msg):
-        print(f"CONTROLADOR-PERSONALIZACION: SEÑAL RECIBIDA DE {msg}")
+        print(f"CONTROLADOR-PERSONALIZACION: SEÑAL RECIBIDA DE {msg[0]}")
         # self.root.setImage("images/marco-354x220_200%.png")
         # self.root.marcoFrame.config(width=500,height=500)
+        self.userHandler=msg[1]
+        print(vars(self.userHandler.getJugadorObject()))
         self.show()
 
     def publishEventPersonlizacion(self):
         msg="CONTROLADOR-PERSONALIZACION"
+        self.oCustomView.hide()
         pub.sendMessage("PERSONALIZACION-INICIO",msg=msg)
 
     def show(self):

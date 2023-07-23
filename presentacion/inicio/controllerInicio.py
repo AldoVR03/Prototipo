@@ -119,7 +119,7 @@ class ControllerInicio():
                          print("Selección de personajes")  #Jugador con un personaje como mínimo
                     else:
                         print("Personalización del primer personaje") #Jugador con cero personajes
-                        msg="CONTROLADOR-INICIO"
+                        msg=["CONTROLADOR-INICIO",self.jugadorHandler]
                         self.oLogin.loginFrame.pack_forget()
                         pub.sendMessage("INICIO-PERSONALIZACION", msg=msg)
                         
@@ -131,6 +131,7 @@ class ControllerInicio():
 
     def eventSubPersonalizacion(self, msg):
          print(f'CONTROLADOR-INICIO: SEÑAL RECIBIDA DE {msg}')
+         self.showLoginFrame()
          
     def validarDatos(self,username,password):
             pattern= r'^[a-zA-Z0-9_]*$'

@@ -1,7 +1,9 @@
 from datos.jugadorDAO import JugadorDAO
 from datos.gameMasterDAO import GameMasterDAO
 from logica.jugadorModel import JugadorModel
+from logica.gameMasterModel import GameMasterModel
 from datos.userMapper import JugadorMapper 
+from datos.userMapper import GameMasterMapper
 class JugadorService():
     def __init__(self) -> None:
         self.oJugadorDAO=JugadorDAO()
@@ -25,13 +27,17 @@ class JugadorService():
     def checkUserRegister(self,username,nickname):
         return self.oJugadorDAO.checkUserRegister(username,nickname)
 
-class GmService():
+class GameMasterService():
     def __init__(self) -> None:
         self.oGameMasterDAO=GameMasterDAO()
-    def checkUser(self,userName,password):
-        print("GM-PATH")
-        exists=self.oGameMasterDAO.existeGm(userName,password)
-        return exists
+        self.oGameMasterMaper=GameMasterMapper()
+    def checkUser(self,username,password):
+        exists=self.oGameMasterDAO.existeGm(username,password)
+        if exists:
+            gameMasterObject=self.oGameMasterMaper.convertToGameMasterModel(username, GameMasterModel(*((None,)*4)))
+        else:
+            gameMasterObject=None
+        return exists, gameMasterObject
     def registerUser(self, username, nickname, password):
         check=self.oGameMasterDAO.registrarGM(username,nickname,password)
         return check
