@@ -23,11 +23,7 @@ class JugadorModel():
         self.__id = id
     def setNombreUsuario(self,username):
         self.__nombreUsuario=username
-    def setPersonajes(self,personaje):
-        if len(self.__personajes==4): #Arreglar esto
-            return None    
-        else:
-            self.__personajes.append(personaje)
+    
 
     def setNivelCuenta(self,nivelCuenta):
         self.__nivelCuenta=nivelCuenta
@@ -35,3 +31,15 @@ class JugadorModel():
     def setApodo(self,apodo):
         self.__apodo = apodo
 
+    # Otros
+    def addOneCharacter(self, character):
+        if self.__personajes>=4:
+            print("No puedes tener más personajes")
+        print("Añadiendo personajes....")
+    def addManyCharacters(self,characters:list):
+        if (len(self.__personajes)+len(characters))>4:
+            print("La cantidad excede los personajes permitidos")
+        else:
+            for character in characters:
+                self.__personajes.append(character)
+            print(f"Este jugador tiene {len(self.__personajes)} personajes")

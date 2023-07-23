@@ -2,6 +2,7 @@ import tkinter as tk
 import presentacion.constants as cons
 from pubsub import pub
 from presentacion.personalizacion.customView import CustomView
+from logica.PersonalizacionBusinessDelegate import PersonalizacionBusinessDelegate
 class ControllerPersonalizacion():
 
     def __init__(self,root) -> None:
@@ -14,7 +15,7 @@ class ControllerPersonalizacion():
         self.y = (self.root.bgHeight - self.alto_marco) // 2
         
         self.oCustomView=CustomView(self.root.marcoFrame)
-
+        self.personalizacionBusinessDelegate=PersonalizacionBusinessDelegate()
         # Eventos
         self.oCustomView.customBackBtn.configure(command=self.publishEventPersonlizacion)
 

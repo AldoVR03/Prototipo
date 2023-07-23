@@ -15,7 +15,6 @@ class InicioBusinessDelegate:
 
     def setServiceType(self, service_type):
         self.serviceType = service_type
-
     def checkUser(self, username,password):
         print(self.serviceLookup,self.serviceType)
         if self.serviceLookup is not None and self.serviceType is not None:
@@ -26,6 +25,7 @@ class InicioBusinessDelegate:
                     self.jugador=result[1]
                     print("Enviando datos a JugadorHandler....")
                     pub.sendMessage("PLAYER-OBJECT", msg=result[1])
+                    pub.sendMessage("CHARACTER-OBJECT", msg=result[1].getId())
                 return result[0]
             
             else:

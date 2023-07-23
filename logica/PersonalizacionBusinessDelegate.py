@@ -1,32 +1,39 @@
-from logica.userService import JugadorService, GmService
+from logica.customService import CharacterService
 ##CONSIDERAR CREAR UN GESTOR DE OBJETOS JUGADORES Y OTROS TIPOS DE GESTORES
 from pubsub import pub
 class PersonalizacionBusinessDelegate:
     def __init__(self, serviceLookup=None,serviceType=None):
+        pub.subscribe(self.searchCharacters,"CHARACTER-OBJECT")
         self.serviceLookup = PersonalizacionServiceLookup()
         self.serviceType = serviceType
-        self.jugador=None
-        self.serviceLookup.registerService("JUGADOR",JugadorService())
-        self.serviceLookup.registerService("GM",GmService())
+        # self.jugador=None
+
+        self.serviceLookup.registerService("PERSONAJE",CharacterService())
+
 
     # def setServiceLookup(self, service_lookup):
     #     self.service_lookup = service_lookup
 
     def setServiceType(self, service_type):
         self.serviceType = service_type
+    def searchCharacters(self, msg):
+        self.serviceType="PERSONAJE"
+        print("asdasdasda",msg)
+        self.getCharacters(msg)
 
-    def saveCharacter(self, username,password):
+    def getCharacters(self,id):
         print(self.serviceLookup,self.serviceType)
         if self.serviceLookup is not None and self.serviceType is not None:
             service = self.serviceLookup.getService(self.serviceType)
             if service is not None:
-                result=service.checkUser(username,password)
+                result=service.getCharactersById(id)
                 print("result: ",result)
-                if result[1]:
-                    self.jugador=result[1]
+                if result:
+                    # self.jugador=result
                     print("Enviando datos a JugadorHandler....")
-                    pub.sendMessage("PLAYER-OBJECT", result[1])
-                return result[0]
+                    pub.sendMessage("CHARACTERS", msg=result)
+                    
+                
             
             else:
                 print("El servicio solicitado no está disponible.")
