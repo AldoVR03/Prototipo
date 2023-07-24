@@ -18,11 +18,14 @@ class JugadorHandler():
     
     def getSelectedCharacter(self):
         return self.__personajeObject
+    def getSelectedCharacter(self):
+        return self.__personajeObject
     
     def setJugadorObject(self,re):
         self.__jugadorObject=re
     def setSelectedCharacter(self, charObject):
         self.__personajeObject = charObject
+    
     
     
         

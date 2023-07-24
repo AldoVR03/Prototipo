@@ -34,7 +34,7 @@ class TiendaView():
         self.bottomRightFrame=tk.Frame(self.rightFrame,bg="#8f563b", width=200,height=187)
         
         self.imagenObjeto=tk.PhotoImage(file="images/espadawmarco.png")
-        self.nombreObjetoLabel=tk.Label(self.topRightFrame, text="[Nombre objeto]", bg="#8f563b", font=cons.FONT_FAMILY1)
+        self.nombreObjetoLabel=tk.Label(self.topRightFrame, text="Espada Llameante I", bg="#8f563b", font=cons.FONT_FAMILY1)
         self.descripcionObjeto=tk.Label(self.topRightFrame, text="[Descripción obtejo]", bg="#8f563b", font=cons.FONT_FAMILY1)
         self.canvasObject=tk.Canvas(self.topRightFrame, width=self.imagenObjeto.width(), height=self.imagenObjeto.height(),bd=0,borderwidth=0,highlightthickness=0)
         print(self.imagenObjeto)

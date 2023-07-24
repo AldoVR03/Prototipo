@@ -10,7 +10,7 @@ class CounterComponent():
 
         self.btn_decrementar = tk.Button(self.container, text="-", command=self.decrementar, font=font)
         self.btn_incrementar = tk.Button(self.container, text="+", command=self.incrementar,font=font)
-        self.label_valor = tk.Label(self.container, text=str(self.valor), font=font, width=10)
+        self.counter = tk.Label(self.container, text=str(self.valor), font=font, width=10)
         self.priceValue=500
         self.priceLabel=tk.Label(root,text=str(self.valor*self.priceValue), bg="brown", font=font, foreground="Yellow")
         self.purchaseBtn=tk.Button(self.btnContainer, text="Comprar", command=lambda:print("Hola"), font=font)
@@ -22,7 +22,7 @@ class CounterComponent():
         self.container.pack()
         self.btnContainer.pack(**cons.BUTTON_LAYOUT, pady=5)
         self.btn_decrementar.pack(side="left")
-        self.label_valor.pack(side="left")
+        self.counter.pack(side="left")
         self.btn_incrementar.pack(side="left")
         self.purchaseBtn.pack(**cons.BUTTON_LAYOUT)
         self.backBtn.pack(**cons.BUTTON_LAYOUT)
@@ -30,7 +30,7 @@ class CounterComponent():
    
 
     def actualizar_valor(self,nuevo_valor):
-        self.label_valor.config(text=str(nuevo_valor))
+        self.counter.config(text=str(nuevo_valor))
         self.priceLabel.config(text=str(self.valor*self.priceValue))
 
 # Funciones de incremento y decremento
@@ -49,7 +49,7 @@ class CounterComponent():
 
 # # # Función para actualizar el valor
 # # def actualizar_valor(nuevo_valor):
-# #     label_valor.config(text=str(nuevo_valor))
+# #     counter.config(text=str(nuevo_valor))
 
 # # # Funciones de incremento y decremento
 # # def incrementar():
@@ -71,8 +71,8 @@ class CounterComponent():
 # # btn_decrementar.pack(side="left")
 
 # # # Label para mostrar el valor
-# # label_valor = tk.Label(frame_contenedor, text=str(valor), font=("Arial", 12), width=10, relief="solid")
-# # label_valor.pack(side="left")
+# # counter = tk.Label(frame_contenedor, text=str(valor), font=("Arial", 12), width=10, relief="solid")
+# # counter.pack(side="left")
 
 # # # Botón de incremento a la derecha del Label
 # # btn_incrementar = tk.Button(frame_contenedor, text="+", command=incrementar)

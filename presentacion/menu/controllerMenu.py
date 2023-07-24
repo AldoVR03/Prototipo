@@ -35,6 +35,7 @@ class ControllerMenu():
         self.oMenuView.clanBtn.config(command=self.toClan)
         self.oClanView.viewDict["Clan"].backBtn.configure(command=lambda:self.toMenu("CLAN"))
         self.oSelectionView.createCharacterBtn.config(command=self.toCustomCharacter)
+        self.oTiendaView.counterComponent.purchaseBtn.config(command=self.doTransaction)
         # Otros
         self.getCanvasList()
         self.selectedItem=None
@@ -135,7 +136,8 @@ class ControllerMenu():
         # self.oMenuView.isSelected=(canvas,canvas.find_withtag("image_tag")[0])
         self.oMenuView.canvas.pack_forget()
 
-
+        print(self.jugadorHandler.getSelectedCharacter().getMonedas())
+        self.oTiendaView.moneyLabel.config(text=self.jugadorHandler.getSelectedCharacter().getMonedas())
         self.oTiendaView.canvas.pack()
         self.oTiendaView.show()
         
@@ -145,6 +147,21 @@ class ControllerMenu():
 
 
     # TIENDA
+    def doTransaction(self):
+        totalPrice=int(self.oTiendaView.counterComponent.priceLabel.cget("text"))
+        actualCharacterMoney=self.jugadorHandler.getSelectedCharacter().getMonedas()
+        if totalPrice>actualCharacterMoney:
+            messagebox.showinfo("Insuficientes monedas","No tiene suficientes monedas.")
+            return
+        if actualCharacterMoney==0:
+            messagebox.showinfo("Insuficientes monedas","No tienes monedas")
+            return
+            
+        print("TOTALPRICE: ",totalPrice, "\nACTUAL:",actualCharacterMoney)
+        result= actualCharacterMoney-totalPrice
+        self.oTiendaView.moneyLabel.config(text=result)
+
+        self.jugadorHandler.getSelectedCharacter().setMonedas(result)
     def getCanvasList(self):
         objectComList=self.oTiendaView.managerFrame.objectCompList
         for elem in objectComList:
@@ -174,7 +191,7 @@ class ControllerMenu():
 
         # Crear un nuevo canvas en otro lugar y mostrar la imagen del canvas pulsado
         self.oTiendaView.canvasObject = self.selectedItem
-       
+        self.oTiendaView.canvasObject.master=self.oTiendaView.topRightFrame
         self.oTiendaView.canvasObject.pack()
 
 

@@ -17,9 +17,9 @@ class PasswordView():
 
         # Label-Entry section
         self.oldPassLabel=tk.Label(self.passwordFrame,text="Contraseña antigua",font=consts.FONT_FAMILY1, bg="#8f563b")
-        self.oldPassEntry=tk.Entry(self.passwordFrame,bg="#d9a066",bd=0,font=consts.FONT_FAMILY1)
+        self.oldPassEntry=tk.Entry(self.passwordFrame,bg="#d9a066",bd=0,font=consts.FONT_FAMILY1, show="*")
         self.newPassLabel=tk.Label(self.passwordFrame,text="Contraseña nueva",font=consts.FONT_FAMILY1, bg="#8f563b")
-        self.newPassEntry=tk.Entry(self.passwordFrame,bg="#d9a066",bd=0,font=consts.FONT_FAMILY1)
+        self.newPassEntry=tk.Entry(self.passwordFrame,bg="#d9a066",bd=0,font=consts.FONT_FAMILY1, show="*")
  
         # Radio Button
         self.jugadorRadioBtn=tk.Radiobutton(self.radioButtonFrame, text="Jugador", value=1,variable=self.radioVar,background="#8f563b", takefocus=False,activebackground="#8f563b",font=consts.FONT_FAMILY1 )

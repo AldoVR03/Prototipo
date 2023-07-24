@@ -21,7 +21,7 @@ class SignInView():
         self.signInNicknameEntry=tk.Entry(self.signInFrame,bg="#d9a066",bd=0,font=cons.FONT_FAMILY1)
 
         self.signInPasswordLabel=tk.Label(self.signInFrame,text="Contraseña",font=cons.FONT_FAMILY1, bg="#8f563b")
-        self.signInPasswordEntry=tk.Entry(self.signInFrame,bg="#d9a066",bd=0,font=cons.FONT_FAMILY1)
+        self.signInPasswordEntry=tk.Entry(self.signInFrame,bg="#d9a066",bd=0,font=cons.FONT_FAMILY1, show="*")
         
         self.jugadorRadioBtn=tk.Radiobutton(self.radioButtonFrame, text="Jugador", value=1,variable=self.radioVar, takefocus=False,background="#8f563b",activebackground="#8f563b",font=cons.FONT_FAMILY1 )
         self.gmRadioBtn=tk.Radiobutton(self.radioButtonFrame, text="GM", value=2,variable=self.radioVar, takefocus=False,background="#8f563b",activebackground="#8f563b",font=cons.FONT_FAMILY1 )

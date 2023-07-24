@@ -20,7 +20,7 @@ class LoginView():
         self.usernameEntry=tk.Entry(self.loginFrame,bg="#d9a066",bd=0,font=consts.FONT_FAMILY1)
 
         self.passwordLabel=tk.Label(self.loginFrame,text="Contraseña", bg="#8f563b",font=consts.FONT_FAMILY1)
-        self.passwordEntry=tk.Entry(self.loginFrame,bg="#d9a066",bd=0,font=consts.FONT_FAMILY1)
+        self.passwordEntry=tk.Entry(self.loginFrame,bg="#d9a066",bd=0,font=consts.FONT_FAMILY1, show="*")
 
         self.jugadorRadioBtn=tk.Radiobutton(self.radioButtonFrame, text="Jugador", value=1,variable=self.radioVar,takefocus=False,background="#8f563b", activebackground="#8f563b" ,font=consts.FONT_FAMILY1)
         self.gmRadioBtn=tk.Radiobutton(self.radioButtonFrame, text="GM", value=2,variable=self.radioVar, takefocus=False ,background="#8f563b",activebackground="#8f563b",font=consts.FONT_FAMILY1)
