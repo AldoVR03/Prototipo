@@ -52,6 +52,8 @@ class imagenPersonaje():
         self.__ojosId=None        #|
         self.__ropaId=None        #v
         
+        self.COORDS_X=90
+        self.COORDS_Y=100
 
         self.coordsx=imagenPersonaje.COORDS_X
 
@@ -74,6 +76,10 @@ class imagenPersonaje():
         self.__colorPelo=(0,0,0,255)
         self.__colorOjos=(0,0,0,255)
         self.__colorPiel=(238,195,154,255)
+    def setXCoords(self, new):
+        self.COORDS_X=new
+    def setYCoord(self, new):
+        self.COORDS_Y=self.COORDS_Y+new
 
     def resetColors(self):
         self.__colorPelo=(0,0,0,255)
@@ -101,15 +107,15 @@ class imagenPersonaje():
         if(ropaImage is None):
             ropaImage=Image.open(cons.RUTA_IMAGEN_ROPA)
         self.__refRopa=ImageTk.PhotoImage(ropaImage)
-        self.__ropaId=self.canvas.create_image(COORDS_X,
-                                             COORDS_Y_ROPA,
+        self.__ropaId=self.canvas.create_image(self.COORDS_X,
+                                             self.COORDS_Y+125,
                                              image=self.__refRopa)
     def setPelo(self,peloImage=None):
         if(peloImage is None):
             peloImage=Image.open(cons.RUTA_IMAGEN_PELO)
         self.__refPelo=ImageTk.PhotoImage(peloImage)
-        self.__peloId=self.canvas.create_image(COORDS_X,
-                                             COORDS_Y_PELO,
+        self.__peloId=self.canvas.create_image(self.COORDS_X,
+                                             self.COORDS_Y-10,
                                              image=self.__refPelo)
 
     def setCuerpo(self,cuerpoImage=None):
@@ -117,8 +123,8 @@ class imagenPersonaje():
             cuerpoImage=Image.open(cons.RUTA_IMAGEN_CUERPO)
         
         self.__refCuerpo=ImageTk.PhotoImage(cuerpoImage)
-        self.__cuerpoId=self.canvas.create_image(COORDS_X,
-                                               COORDS_Y_CUERPO,
+        self.__cuerpoId=self.canvas.create_image(self.COORDS_X,
+                                               self.COORDS_Y+50,
                                                image=self.__refCuerpo)
 
     def setOjos(self,ojosImage=None):
@@ -126,8 +132,8 @@ class imagenPersonaje():
             ojosImage=Image.open(cons.RUTA_IMAGEN_OJOS)
 
         self.__refOjo=ImageTk.PhotoImage(ojosImage)
-        self.__ojosId=self.canvas.create_image(COORDS_X,
-                                             COORDS_Y_OJOS,
+        self.__ojosId=self.canvas.create_image(self.COORDS_X,
+                                             self.COORDS_Y,
                                              image=self.__refOjo)
 
     def construirPersonaje(self):

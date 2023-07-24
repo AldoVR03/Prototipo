@@ -53,7 +53,7 @@ class TiendaView():
                                             {'Consumibles':
                                                  [{'NOMBRE_OBJETO':'Espada Llameante I'}]},
                                              {'Todos':[{'NOMBRE_OBJETO':" "},{"NOMBRE_OBJETO":" "},{"NOMBRE_OBJETO":" "}]}])
-        self.moneyLabel=tk.Label(root, text=f"{10000000000}", bg="#d9a066", font=cons.FONT_FAMILY1, foreground=cons.COLOR_AMARILLO)
+        self.moneyLabel=tk.Label(self.canvas, text=f"{10000000000}", bg="#d9a066", font=cons.FONT_FAMILY1, foreground=cons.COLOR_AMARILLO)
         self.canvas.create_image(0, 0, anchor="nw", image=self.backgroundImage)
         self.canvas.create_image(self.x, self.y, anchor="nw", image=self.marcoImage)
         self.canvas.create_image(630, 40, anchor="nw", image=self.moneyImage)

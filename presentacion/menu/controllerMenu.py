@@ -3,6 +3,7 @@ import tkinter as tk
 from presentacion.menu.menuView import MenuView
 from presentacion.menu.SelectionView import SelectionView
 from presentacion.menu.tiendaView import TiendaView
+from presentacion.menu.libroView import LibroView
 import time
 
 class ControllerMenu():
@@ -18,17 +19,24 @@ class ControllerMenu():
         self.oMenuView=MenuView(self.window.root)
         self.oSelectionView=SelectionView(self.window.root)
         self.oTiendaView=TiendaView(self.window.root)
-        
+        self.oLibroView=LibroView(self.window.root)
 
         # Eventos
         self.oSelectionView.backSelectionBtn.config(command=lambda:self.toLogin("SELECTION"))
         self.oSelectionView.contBtn.config(command=lambda:self.toMenu("SELECTION"))
         self.oMenuView.salirBtn.config(command=lambda:self.toLogin("MENU"))
         self.oMenuView.canvas.tag_bind(self.oMenuView.tiendaImageReference, "<Button-1>", self.changeView)
+        self.oMenuView.libroBtn.config(command=self.toLibro)
+        self.oLibroView.viewDict["User"].backBtn.configure(command=lambda:self.toMenu("LIBRO"))
         self.oTiendaView.counterComponent.backBtn.config(command=lambda:self.toMenu("TIENDA"))
+        
     def show(self):
         self.oMenuView.show()
         # pass
+
+    def toLibro(self):
+        self.oMenuView.canvas.pack_forget()
+        self.oLibroView.show()
     def toLogin(self,location):
         if(location=="SELECTION"):
             self.oSelectionView.canvas.pack_forget()
@@ -47,7 +55,11 @@ class ControllerMenu():
         elif location=="TIENDA":
             # self.oTiendaView.hide()
             self.oTiendaView.canvas.pack_forget()
+            # self.oTiendaView.counterComponent.hide()
             # self.oTiendaView.mainFrame.pack_forget()
+        elif location=="LIBRO":
+            self.oLibroView.canvas.pack_forget()
+            
             
 
         self.oMenuView.canvas.pack()

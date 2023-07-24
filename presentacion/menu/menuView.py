@@ -34,6 +34,7 @@ class MenuView():
         # Frames
         self.mainFrame=tk.Frame(self.canvas, width=280,height=370,bg="#8f563b" )
         self.barFrame=tk.Frame(self.canvas,bg="#8f563b", width=440,height=20)
+        self.btnFrame=tk.Frame(self.mainFrame,bg="#8f563b")
         # #8f563b
         # Bar frames
         self.rightBarFrame=tk.Frame(self.barFrame, bg="#8f563b")
@@ -41,10 +42,10 @@ class MenuView():
 
         
         # Menu section
-        self.jugarBtn=tk.Button(self.mainFrame,font=cons.FONT_FAMILY2,text="JUGAR")
-        self.habilidadBtn=tk.Button(self.mainFrame,font=cons.FONT_FAMILY2,text="LIBRO DE HABILIDADES")
-        self.enemigoBtn=tk.Button(self.mainFrame,font=cons.FONT_FAMILY2,text="LIBRO DE ENEMIGOS")
-        self.misionBtn=tk.Button(self.mainFrame, font=cons.FONT_FAMILY2,text="MISIONES")
+        self.jugarBtn=tk.Button(self.btnFrame,font=cons.FONT_FAMILY2,text="JUGAR",width=20)
+        self.libroBtn=tk.Button(self.btnFrame,font=cons.FONT_FAMILY2,text="LIBRO")
+        self.clanBtn=tk.Button(self.mainFrame,font=cons.FONT_FAMILY2,text="CLAN")
+        # self.misionBtn=tk.Button(self.mainFrame, font=cons.FONT_FAMILY2,text="MISIONES")
         self.salirBtn=tk.Button(self.mainFrame,font=cons.FONT_FAMILY2,text="SALIR")
         
         
@@ -58,7 +59,7 @@ class MenuView():
         self.playerQuantityLabel=tk.Label(self.leftBarFrame, text=0, bg="#8f563b", font=cons.FONT_FAMILY1)
         self.characterQuantityLabel=tk.Label(self.rightBarFrame, text=0, bg="#8f563b", font=cons.FONT_FAMILY1)
         # Store section
-        self.btnIniciar=tk.Label(self.canvas,text="hgola")
+        # self.btnIniciar=tk.Label(self.canvas,text="hgola")
 
 
 
@@ -75,14 +76,15 @@ class MenuView():
     def show(self):
         self.canvas.pack()
         self.mainFrame.place(relx=0.79, rely=0.55, anchor="center")
+        self.btnFrame.pack(**cons.BUTTON_LAYOUT)
         self.barFrame.place(relx=0.28, rely=0.1, anchor="center")
         # self.btnIniciar.place(x=self.x+250+30, y=self.y)
 
         # Menu section
         self.jugarBtn.pack(**cons.BUTTON_LAYOUT, pady=10)
-        self.habilidadBtn.pack(**cons.BUTTON_LAYOUT, pady=10)
-        self.enemigoBtn.pack(**cons.BUTTON_LAYOUT, pady=10)
-        self.misionBtn.pack(**cons.BUTTON_LAYOUT, pady=10)
+        self.libroBtn.pack(**cons.BUTTON_LAYOUT, pady=10)
+        self.clanBtn.pack(**cons.BUTTON_LAYOUT, pady=10)
+        # self.misionBtn.pack(**cons.BUTTON_LAYOUT, pady=10)
         self.salirBtn.pack(**cons.BUTTON_LAYOUT, pady=10)
 
         # Bar section

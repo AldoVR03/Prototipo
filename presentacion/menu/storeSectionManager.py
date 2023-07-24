@@ -1,7 +1,7 @@
 import tkinter as tk
 
 import presentacion.constants as cons
-import presentacion.menu.storeObjectComponent as SOC
+import presentacion.menu.scrollObjectComponent as SOC
 # import scrollframepba as SOC
 import random
 import time
@@ -93,7 +93,7 @@ class SectionManager():
 
                     length= len(obj[tab])
                     objElem=obj
-            oComponent= SOC.ObjectFrameComponent(self.contentTabFrame, length,self.determineImages(objElem,tab), 2)
+            oComponent= SOC.ObjectFrameComponent(self.contentTabFrame, length,self.determineImages(objElem,tab), 2,True,tk.PhotoImage(file="images/espadawmarcoMini.png"))
                     
             # Guarda referencias a los objetos de contenido de cada tab
             # print(tab)

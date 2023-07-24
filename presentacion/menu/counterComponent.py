@@ -6,23 +6,28 @@ class CounterComponent():
         self.valor=1
         self.btnLayout=btnLayout
         self.container=tk.Frame(root,bg="#8f563b")
+        self.btnContainer=tk.Frame(root)
+
         self.btn_decrementar = tk.Button(self.container, text="-", command=self.decrementar, font=font)
         self.btn_incrementar = tk.Button(self.container, text="+", command=self.incrementar,font=font)
         self.label_valor = tk.Label(self.container, text=str(self.valor), font=font, width=10)
         self.priceValue=500
-        self.priceLabel=tk.Label(root,text=str(self.valor*self.priceValue), bg="#8f563b", font=font, foreground="Yellow")
-        self.purchaseBtn=tk.Button(root, text="Comprar", command=lambda:print("Hola"), font=font)
-        self.backBtn=tk.Button(root, text="Volver", command=lambda:print("Hola"), font=font)
+        self.priceLabel=tk.Label(self.btnContainer,text=str(self.valor*self.priceValue), bg="#8f563b", font=font, foreground="Yellow")
+        self.purchaseBtn=tk.Button(self.btnContainer, text="Comprar", command=lambda:print("Hola"), font=font)
+        self.backBtn=tk.Button(self.btnContainer, text="Volver", command=lambda:print("Hola"), font=font)
 
     def show(self):
+        
         self.priceLabel.pack()
         self.container.pack()
+        self.btnContainer.pack()
         self.btn_decrementar.pack(side="left")
         self.label_valor.pack(side="left")
         self.btn_incrementar.pack(side="left")
         self.purchaseBtn.pack(**self.btnLayout)
         self.backBtn.pack(**self.btnLayout)
-        
+   
+   
 
     def actualizar_valor(self,nuevo_valor):
         self.label_valor.config(text=str(nuevo_valor))
