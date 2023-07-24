@@ -19,7 +19,7 @@ class ControllerMenu():
 
         # Eventos
         self.oSelectionView.backSelectionBtn.config(command=self.toLogin)
-
+        self.oSelectionView.contBtn.config(command=self.toMenu)
     
     def show(self):
         self.oMenuView.show()
@@ -29,6 +29,10 @@ class ControllerMenu():
         self.jugadorHandler=None
         msg="Hola"
         pub.sendMessage("SELECCION-INICIO",msg=msg)
+    def toMenu(self):
+        self.oSelectionView.canvas.pack_forget()
+        self.oMenuView.canvas.pack()
+        self.oMenuView.show()
         
     def eventSubInicio(self,msg):
         print("CONTROLADOR-MENU: SEÑAL RECIBIDA")
