@@ -40,18 +40,22 @@ class ControllerMenu():
         self.oMenuView.show()
         # pass
     def toCustomCharacter(self):
-        self.oSelectionView.canvas.pack_forget()
-        msg="CONTROLLER--MENU"
-        pub.sendMessage("SELECT-PERSONALIZACION",msg=msg)
+        # print(self.jugadorHandler.getJugadorObject().getId())
+        if len(self.jugadorHandler.getJugadorObject().getPersonajes()) >=4:
+            messagebox.showerror("Personajes máximos alcanzados","No puedes crear más personajes")
+        else:
+            
+            self.oSelectionView.canvas.pack_forget()
+            msg=self.jugadorHandler
+            pub.sendMessage("SELECT-PERSONALIZACION",msg=msg)
     def toClan(self):
         self.oMenuView.canvas.pack_forget()
         self.oClanView.show()
     def toLibro(self):
-        if len(self.jugadorHandler.getJugadorObject().getPersonajes()) >=4:
+        
             self.oMenuView.canvas.pack_forget()
             self.oLibroView.show()
-        else:
-            messagebox.showerror("Personajes máximos alcanzados","No puedes crear más personajes")
+        
     def toLogin(self,location):
         if(location=="SELECTION"):
             self.oSelectionView.canvas.pack_forget()

@@ -47,6 +47,7 @@ class ControllerPersonalizacion():
         print(vars(self.jugadorHandler.getJugadorObject()))
         self.show()
     def fromSelection(self,msg):
+        self.jugadorHandler=msg
         self.canvas.pack()
         self.oCustomView.show()
 
@@ -64,17 +65,18 @@ class ControllerPersonalizacion():
         clase=(self.oCustomView.clasePersonajeCombobox.get())
         currentColors=(self.oCustomView.personajeComponent.getCurrentColors())
         print(currentColors)
-
+        print(self.jugadorHandler.getJugadorObject().getId())
         if(len(self.oCustomView.nombrePersonajeEntry.get())>=8):
             pub.sendMessage("NEW-PLAYER",msg=self.jugadorHandler)
             self.canvas.pack_forget()
             self.personalizacionBusinessDelegate.setServiceType("PERSONAJE")
-          
+            
             if(self.personalizacionBusinessDelegate.saveCharacter(self.jugadorHandler.getJugadorObject().getId(),nombrePersonaje,raza,clase,currentColors["PELO"],currentColors["PIEL"],currentColors["OJOS"])):
                 print("Personaje guardado con éxito!!")
                 # Enviar al menu
                 # self.oCustomView.hide()
-                # self.canvas.pack_forget()
+                # self.canvas.pack_forget(
+                self.personalizacionBusinessDelegate.getCharacters(self.jugadorHandler.getJugadorObject().getId())
                 
             else:
                 print("No se ha podido guardar")

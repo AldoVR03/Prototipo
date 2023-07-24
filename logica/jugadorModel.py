@@ -33,10 +33,13 @@ class JugadorModel():
 
     # Otros
     def addOneCharacter(self, character):
-        if self.__personajes>=4:
+        if len(self.__personajes)>=4:
             print("No puedes tener más personajes")
+        else:
+            self.__personajes.append(character)
         print("Añadiendo personajes....")
     def addManyCharacters(self,characters:list):
+        self.__personajes=[]
         if (len(self.__personajes)+len(characters))>4:
             print("La cantidad excede los personajes permitidos")
         else:
