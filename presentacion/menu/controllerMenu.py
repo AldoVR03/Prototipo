@@ -31,7 +31,23 @@ class ControllerMenu():
         print("CONTROLADOR-MENU: HE RECIBIDO EL MENSAJE PARA NO NUEVOS JUGADORES")
         self.oSelectionView.show()
         self.jugadorHandler=msg
-        self.oSelectionView.setCharacters(self.jugadorHandler.getJugadorObject().getCharacters())
+        self.oSelectionView.setCharacters(self.jugadorHandler.getJugadorObject().getPersonajes())
+        colors=self.getCharacterColors(self.oSelectionView.characterList)
+        self.oSelectionView.showPlayerCharacters(len(self.oSelectionView.characterList),colors)
         print(vars(self.jugadorHandler.getJugadorObject()))
+        
+
+    def getCharacterColors(self,characterObjects):
+        # print(vars(characterObjects[0]))
+        colorDict={}
+        colorList=[]
+        for i,obj in enumerate(characterObjects):
+            colorDict["HAIRCOLOR"]=obj.getHairColor()
+            colorDict["SKINCOLOR"]=obj.getSkinColor()
+            colorDict["EYECOLOR"]=obj.getEyeColor()
+            colorList.append(colorDict)
+            colorDict={}
+        return colorList
+
 
 

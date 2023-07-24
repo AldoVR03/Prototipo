@@ -164,7 +164,7 @@ class imagenPersonaje():
                 return imagenPersonaje.SKIN_COLORS[index]
             
             
-    def cambiarColorParte(self,imagenNueva:int,pathImage,colorNuevo:tuple):
+    def cambiarColorParte(self,imagenNuevaId:int,pathImage,colorNuevo:tuple):
         # El parametro pathImage debe contener una de las variables de clase
         objectImage= Image.open(pathImage)
         if(pathImage == cons.RUTA_IMAGEN_CUERPO):
@@ -198,7 +198,7 @@ class imagenPersonaje():
         modifiedTk= ImageTk.PhotoImage(modifiedImage)
 
         # Aquí se hace el cambio, es decir, la imagen antigua es cambiada por la nueva
-        self.canvas.itemconfig(imagenNueva, image=modifiedTk)
+        self.canvas.itemconfig(imagenNuevaId, image=modifiedTk)
   
         if(pathImage == cons.RUTA_IMAGEN_OJOS):
             # print("hola")
