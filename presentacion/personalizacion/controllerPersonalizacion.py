@@ -8,6 +8,7 @@ class ControllerPersonalizacion():
 
     def __init__(self,window) -> None:
         pub.subscribe(self.eventSubInicio, "INICIO-PERSONALIZACION")
+        pub.subscribe(self.fromSelection, "SELECT-PERSONALIZACION")
         self.window=window
         self.root=self.window.root
         self.canvas=tk.Canvas(self.root, width=self.window.bgWidth, height=self.window.bgHeight,bd=0,borderwidth=0,highlightthickness=0)
@@ -45,6 +46,9 @@ class ControllerPersonalizacion():
         self.jugadorHandler=msg[1]
         print(vars(self.jugadorHandler.getJugadorObject()))
         self.show()
+    def fromSelection(self,msg):
+        self.canvas.pack()
+        self.oCustomView.show()
 
     def publishEventPersonlizacion(self):
         msg="CONTROLADOR-PERSONALIZACION"

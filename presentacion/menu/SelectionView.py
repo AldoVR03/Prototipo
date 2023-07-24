@@ -65,7 +65,7 @@ class SelectionView():
     
         # Bottom content
         self.contBtn=tk.Button(self.bottomFrame, text="Continuar", font=cons.FONT_FAMILY1, state="disabled")
-        self.createCharacterBtn=tk.Button(self.bottomFrame, text="Crear personaje",font= cons.FONT_FAMILY1,state="disabled")
+        self.createCharacterBtn=tk.Button(self.bottomFrame, text="Crear personaje",font= cons.FONT_FAMILY1)
         self.backSelectionBtn=tk.Button(self.bottomFrame, text="Volver", font=cons.FONT_FAMILY1)
 
 

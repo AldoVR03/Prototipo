@@ -5,6 +5,7 @@ from presentacion.menu.SelectionView import SelectionView
 from presentacion.menu.tiendaView import TiendaView
 from presentacion.menu.libroView import LibroView
 from presentacion.menu.clanView import ClanView
+from tkinter import messagebox
 import time
 
 class ControllerMenu():
@@ -33,15 +34,24 @@ class ControllerMenu():
         self.oTiendaView.counterComponent.backBtn.config(command=lambda:self.toMenu("TIENDA"))
         self.oMenuView.clanBtn.config(command=self.toClan)
         self.oClanView.viewDict["Clan"].backBtn.configure(command=lambda:self.toMenu("CLAN"))
+        self.oSelectionView.createCharacterBtn.config(command=self.toCustomCharacter)
+        
     def show(self):
         self.oMenuView.show()
         # pass
+    def toCustomCharacter(self):
+        self.oSelectionView.canvas.pack_forget()
+        msg="CONTROLLER--MENU"
+        pub.sendMessage("SELECT-PERSONALIZACION",msg=msg)
     def toClan(self):
         self.oMenuView.canvas.pack_forget()
         self.oClanView.show()
     def toLibro(self):
-        self.oMenuView.canvas.pack_forget()
-        self.oLibroView.show()
+        if len(self.jugadorHandler.getJugadorObject().getPersonajes()) >=4:
+            self.oMenuView.canvas.pack_forget()
+            self.oLibroView.show()
+        else:
+            messagebox.showerror("Personajes máximos alcanzados","No puedes crear más personajes")
     def toLogin(self,location):
         if(location=="SELECTION"):
             self.oSelectionView.canvas.pack_forget()
