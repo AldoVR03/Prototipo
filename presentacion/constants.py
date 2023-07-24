@@ -25,7 +25,7 @@ MARCO_PERSONALIZACION="images/marco-354x220_200%.png"
 RAZAS=("Humanos","Enanos","Elfos")
 
 #clases
-CLASES=("Guerrero","Cazador","Bárbaro","","")
+CLASES=("Guerrero","Cazador","Bárbaro")
 
 
 #Rutas imagenes personaje

@@ -4,6 +4,7 @@ from presentacion.menu.menuView import MenuView
 from presentacion.menu.SelectionView import SelectionView
 from presentacion.menu.tiendaView import TiendaView
 from presentacion.menu.libroView import LibroView
+from presentacion.menu.clanView import ClanView
 import time
 
 class ControllerMenu():
@@ -20,6 +21,7 @@ class ControllerMenu():
         self.oSelectionView=SelectionView(self.window.root)
         self.oTiendaView=TiendaView(self.window.root)
         self.oLibroView=LibroView(self.window.root)
+        self.oClanView=ClanView(self.window.root)
 
         # Eventos
         self.oSelectionView.backSelectionBtn.config(command=lambda:self.toLogin("SELECTION"))
@@ -29,11 +31,14 @@ class ControllerMenu():
         self.oMenuView.libroBtn.config(command=self.toLibro)
         self.oLibroView.viewDict["User"].backBtn.configure(command=lambda:self.toMenu("LIBRO"))
         self.oTiendaView.counterComponent.backBtn.config(command=lambda:self.toMenu("TIENDA"))
-        
+        self.oMenuView.clanBtn.config(command=self.toClan)
+        self.oClanView.viewDict["Clan"].backBtn.configure(command=lambda:self.toMenu("CLAN"))
     def show(self):
         self.oMenuView.show()
         # pass
-
+    def toClan(self):
+        self.oMenuView.canvas.pack_forget()
+        self.oClanView.show()
     def toLibro(self):
         self.oMenuView.canvas.pack_forget()
         self.oLibroView.show()
@@ -59,7 +64,8 @@ class ControllerMenu():
             # self.oTiendaView.mainFrame.pack_forget()
         elif location=="LIBRO":
             self.oLibroView.canvas.pack_forget()
-            
+        elif location == "CLAN":
+            self.oClanView.canvas.pack_forget()
             
 
         self.oMenuView.canvas.pack()

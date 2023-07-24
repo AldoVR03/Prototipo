@@ -55,7 +55,9 @@ class CustomView():
 
         # Left Content
         # Instancia personaje
-        self.personajeComponent=personaje.imagenPersonaje(self.leftContentFrame)
+        self.personajeComponent=personaje.imagenPersonaje(self.leftContentFrame,False)
+        self.personajeComponent.setXCoords(65)
+        self.personajeComponent.construirPersonaje()
 
         
         self.changeHairColorBtn=tk.Button(self.leftContentFrame,text="Color de pelo", font=cons.FONT_FAMILY0)
