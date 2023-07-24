@@ -1,5 +1,5 @@
 import tkinter as tk
-
+import presentacion.constants as cons
 
 class CounterComponent():
     def __init__(self,root, font, btnLayout) -> None:
@@ -12,20 +12,20 @@ class CounterComponent():
         self.btn_incrementar = tk.Button(self.container, text="+", command=self.incrementar,font=font)
         self.label_valor = tk.Label(self.container, text=str(self.valor), font=font, width=10)
         self.priceValue=500
-        self.priceLabel=tk.Label(self.btnContainer,text=str(self.valor*self.priceValue), bg="#8f563b", font=font, foreground="Yellow")
+        self.priceLabel=tk.Label(root,text=str(self.valor*self.priceValue), bg="brown", font=font, foreground="Yellow")
         self.purchaseBtn=tk.Button(self.btnContainer, text="Comprar", command=lambda:print("Hola"), font=font)
         self.backBtn=tk.Button(self.btnContainer, text="Volver", command=lambda:print("Hola"), font=font)
 
     def show(self):
         
-        self.priceLabel.pack()
+        self.priceLabel.pack(**cons.BUTTON_LAYOUT)
         self.container.pack()
-        self.btnContainer.pack()
+        self.btnContainer.pack(**cons.BUTTON_LAYOUT, pady=5)
         self.btn_decrementar.pack(side="left")
         self.label_valor.pack(side="left")
         self.btn_incrementar.pack(side="left")
-        self.purchaseBtn.pack(**self.btnLayout)
-        self.backBtn.pack(**self.btnLayout)
+        self.purchaseBtn.pack(**cons.BUTTON_LAYOUT)
+        self.backBtn.pack(**cons.BUTTON_LAYOUT)
    
    
 

@@ -135,6 +135,7 @@ class ControllerInicio():
 
     def eventSubPersonalizacion(self, msg):
          print(f'CONTROLADOR-INICIO: SEÑAL RECIBIDA DE {msg}')
+         self.jugadorHandler=None
          self.showLoginFrame()
          
     def validarDatos(self,username,password):

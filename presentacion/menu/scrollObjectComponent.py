@@ -30,7 +30,7 @@ class ObjectFrameComponent():
         self.selectedImage=selectedImage
 
         
-        self.canvasList={}
+        self.canvasList=[]
         self.frames = []
         self.length = length
         self.rows=0
@@ -49,6 +49,7 @@ class ObjectFrameComponent():
         self.numCol=numCol
         self.leftWidthFrame=201
         self.withFrame=wframe
+        self.selectedItem=None
 
     def start(self):
         self.canvas.pack( side="left")
@@ -64,8 +65,9 @@ class ObjectFrameComponent():
                 if len(self.frames)==self.length:
                     break
 
-                
+                canvas=None
                 if self.withFrame:
+                    canvas=None
                     print("holaaa")
                     frame = tk.Frame(self.frame_interior, width=1000, height=500, background=cons.BG_MARCO_TIENDA)
                     canvasRect=tk.Canvas(frame, bg=cons.BG_MARCO_TIENDA,bd=0,highlightthickness=0, width=self.image2.width(), height=self.image2.height())
@@ -87,14 +89,19 @@ class ObjectFrameComponent():
                     # rightFrame.place(x=0,y=0)
                     
                     canvas=tk.Canvas(leftFrame, width=self.image1.width(), height=self.image1.height(), bg="brown",bd=0,highlightthickness=0)
-                    print(index)
+                    # print(index)
                     canvasRef=canvas.create_image(0, 0, anchor="nw", image=self.imageList[index]) #image=self.imageList[index]
                     # canvasRef=canvas.create_image(0, 0, anchor="nw", image=self.image1)
                     canvas.pack(fill="both",side="bottom", padx=5)
                     canvas.config()
+                    # canvas.bind("<Button-1>", self.on_canvas_click)
+                    # canvas.bind("<Enter>", self.on_canvas_enter)
+                    # canvas.bind("<Leave>", self.on_canvas_leave)
                     # print(index)
                     index+=1
                     canvasRect.pack(padx=2)
+                    self.canvasList.append(canvas)
+                    canvas=None
                 else:
                     frame = tk.Frame(self.frame_interior, width=0, height=500, background=cons.BG_MARCO_TIENDA)
                     frame.grid(row=i, column=j, padx=1,pady=1)
@@ -113,8 +120,13 @@ class ObjectFrameComponent():
                     canvasRef=canvas.create_image(0, 0, anchor="nw", image=self.selectedImage)
                     canvas.pack(fill="both",side="bottom", expand=True)
                     canvas.config()
+                    # canvas.bind("<Button-1>", self.on_canvas_click)
+                    # canvas.bind("<Enter>", self.on_canvas_enter)
+                    # canvas.bind("<Leave>", self.on_canvas_leave)
                     # print(index)
                     index+=1
+                    self.canvasList.append(canvas)
+                    canvas=None
                 # print("hola")
                     # canvasRect.pack()
                 # print("asdasd")
@@ -127,6 +139,7 @@ class ObjectFrameComponent():
                 # # buyBtn=tk.Button(frame, text="Comprar")
                 # buyBtn.pack()
                 # self.canvasList[i]=(canvas,canvasRef)
+                canvas=None
                 self.frames.append(frame)
         # self.frameComp.update()
         print(len(self.frames))
@@ -140,6 +153,16 @@ class ObjectFrameComponent():
             
     def show(self):
         self.frameComp.pack(padx=10)
+    def on_canvas_click(self,event):
+        print(f"Clic en el canvas {event.widget}")
+        self.selectedItem=event.widget
+        
+
+    def on_canvas_enter(self,event):
+        event.widget.config(cursor="hand2")
+
+    def on_canvas_leave(self,event):
+        event.widget.config(cursor="")
         
 
        

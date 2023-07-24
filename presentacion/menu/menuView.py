@@ -105,15 +105,15 @@ class MenuView():
         # self.mainFrame.place(relx=0.5, rely=0.5, anchor="center")
     def change_image(self,event):
         print(self.isSelected)
-        # if(self.isSelected):
-        #     return
+        if(self.isSelected):
+            return
         canvas=event.widget
         canvas.itemconfigure(canvas.find_withtag("image_tag")[0], image=self.tiendaImageOver)  # Cambiar a la segunda imagen
         canvas.configure(cursor="hand2")
 
     def restore_image(self,event):
-        # if self.isSelected:
-        #     return
+        if self.isSelected:
+            return
         canvas=event.widget
         canvas.itemconfigure(canvas.find_withtag("image_tag")[0], image=self.tiendaImage)
         self.canvas.configure(cursor="")

@@ -45,7 +45,7 @@ class SelectionView():
             self.canvasDict[self.positionList[i]]=tk.Canvas(self.characterFrameDict[self.positionList[i]])
             self.canvasDict[self.positionList[i]].config(width=self.characterSelectionImage.width(),bg="#8f563b", height=self.characterSelectionImage.height(), bd=0, borderwidth=0,highlightthickness=0)
             self.characterImageList[self.positionList[i]]=personaje.imagenPersonaje(self.characterFrameDict[self.positionList[i]],False,self.canvasDict[self.positionList[i]])
-        print("asds",self.characterFrameDict,self.canvasDict,self.characterImageList)
+        # print("asds",self.characterFrameDict,self.canvasDict,self.characterImageList)
         # First selection 
         personaje.COORDS_X=90
         self.firstCharacterCanvas=tk.Canvas(self.firstCharacterFrame,width=self.characterSelectionImage.width(),bg="#8f563b", height=self.characterSelectionImage.height(), bd=0, borderwidth=0,highlightthickness=0)
@@ -192,26 +192,30 @@ class SelectionView():
         
 
     def selectCharacter(self, event):
+        print("Entrando al eeee")
         if(self.isSelected):
             canvas=self.isSelected[0]
             idImage=self.isSelected[1]
             canvas.itemconfigure(idImage,image=self.characterSelectionImage)
+            print("SEELECT")
         canvas=event.widget
         canvas.itemconfigure(canvas.find_withtag("image_tag")[0], image=self.characterSelectionImageOver) 
         self.isSelected=(canvas,canvas.find_withtag("image_tag")[0])
         print("Hey you!!")
-        self.selectCharacter=self.relateCanvasPersonaje[canvas]
+        self.selectedCharacter=self.relateCanvasPersonaje[canvas]
         self.contBtn.config(state="normal")
+        
+    
     def setCharacters(self,characterList):
         self.characterList=characterList
         
         
 
 
-if __name__=="__main__":
-    root = tk.Tk()
-    s1=SelectionView(root)
-    s1.show()
+# if __name__=="__main__":
+#     root = tk.Tk()
+#     s1=SelectionView(root)
+#     s1.show()
   
-    s1.showPlayerCharacters()
-    root.mainloop()
+#     s1.showPlayerCharacters()
+#     root.mainloop()

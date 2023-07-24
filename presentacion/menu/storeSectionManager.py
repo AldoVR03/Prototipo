@@ -61,6 +61,8 @@ class SectionManager():
         for key,value in self.objectCompList.items():
             print(key)
             self.objectCompList[key].start()
+    
+
     def showStart(self):
 
         
