@@ -9,7 +9,7 @@ from logica.userHandler import JugadorHandler
 from logica.businessDelegate import InicioBusinessDelegate
 class ControllerInicio():
     def __init__(self,p1) -> None:
-
+        pub.subscribe(self.selectionToLogin, "SELECCION-INICIO")
         pub.subscribe(self.eventSubPersonalizacion, "PERSONALIZACION-INICIO")
         self.jugadorHandler=JugadorHandler()
         self.businessDelegate=InicioBusinessDelegate()
@@ -183,6 +183,8 @@ class ControllerInicio():
     
 
 
+    def selectionToLogin(self,msg):
+        self.showLoginFrame()
 
     
          

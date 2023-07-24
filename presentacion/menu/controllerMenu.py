@@ -7,6 +7,7 @@ class ControllerMenu():
     def __init__(self,root) -> None:
         pub.subscribe(self.receiveNewPlayers, "NEW-PLAYER")
         pub.subscribe(self.receiveNoNewPlayers, "NO-NEW-PLAYER")
+        
         self.jugadorHandler=None
         self.window=root
         # self.canvas=tk.Canvas(self.window.root, width=self.window.bgWidth, height=self.window.bgHeight,bd=0,borderwidth=0,highlightthickness=0)
@@ -15,10 +16,20 @@ class ControllerMenu():
         self.oMenuView=MenuView(self.window.root)
         self.oSelectionView=SelectionView(self.window.root)
         
+
+        # Eventos
+        self.oSelectionView.backSelectionBtn.config(command=self.toLogin)
+
     
     def show(self):
         self.oMenuView.show()
         # pass
+    def toLogin(self):
+        self.oSelectionView.canvas.pack_forget()
+        self.jugadorHandler=None
+        msg="Hola"
+        pub.sendMessage("SELECCION-INICIO",msg=msg)
+        
     def eventSubInicio(self,msg):
         print("CONTROLADOR-MENU: SEÑAL RECIBIDA")
     
@@ -26,6 +37,7 @@ class ControllerMenu():
         print("CONTROLADOR-MENU: HE RECIBIDO EL MENSAJE PARA NUEVOS JUGADORES")
         self.show()
         self.jugadorHandler=msg
+        
 
     def receiveNoNewPlayers(self,msg):
         print("CONTROLADOR-MENU: HE RECIBIDO EL MENSAJE PARA NO NUEVOS JUGADORES")
