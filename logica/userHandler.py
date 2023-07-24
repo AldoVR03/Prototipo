@@ -4,6 +4,7 @@ class JugadorHandler():
         pub.subscribe(self.receivePlayer,"PLAYER-OBJECT")
         pub.subscribe(self.receiveCharacters, "CHARACTERS")
         self.__jugadorObject=None
+        self.__personajeObject=None
     def receivePlayer(self, msg):
         print("JugadorHandler: Jugador recibido", msg)
         self.__jugadorObject=msg
@@ -14,8 +15,16 @@ class JugadorHandler():
         self.__jugadorObject.addManyCharacters(msg)
     def getJugadorObject(self):
         return self.__jugadorObject
+    
+    def getSelectedCharacter(self):
+        return self.__personajeObject
+    
     def setJugadorObject(self,re):
         self.__jugadorObject=re
+    def setSelectedCharacter(self, charObject):
+        self.__personajeObject = charObject
+    
+    
         
         
 class GameMasterHandler():

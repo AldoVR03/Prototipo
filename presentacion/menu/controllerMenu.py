@@ -2,6 +2,8 @@ from pubsub import pub
 import tkinter as tk
 from presentacion.menu.menuView import MenuView
 from presentacion.menu.SelectionView import SelectionView
+from presentacion.menu.tiendaView import TiendaView
+import time
 
 class ControllerMenu():
     def __init__(self,root) -> None:
@@ -15,22 +17,39 @@ class ControllerMenu():
     
         self.oMenuView=MenuView(self.window.root)
         self.oSelectionView=SelectionView(self.window.root)
+        self.oTiendaView=TiendaView(self.window.root)
         
 
         # Eventos
-        self.oSelectionView.backSelectionBtn.config(command=self.toLogin)
-        self.oSelectionView.contBtn.config(command=self.toMenu)
-    
+        self.oSelectionView.backSelectionBtn.config(command=lambda:self.toLogin("SELECTION"))
+        self.oSelectionView.contBtn.config(command=lambda:self.toMenu("SELECTION"))
+        self.oMenuView.salirBtn.config(command=lambda:self.toLogin("MENU"))
+        self.oMenuView.canvas.tag_bind(self.oMenuView.tiendaImageReference, "<Button-1>", self.changeView)
+        self.oTiendaView.counterComponent.backBtn.config(command=lambda:self.toMenu("TIENDA"))
     def show(self):
         self.oMenuView.show()
         # pass
-    def toLogin(self):
-        self.oSelectionView.canvas.pack_forget()
+    def toLogin(self,location):
+        if(location=="SELECTION"):
+            self.oSelectionView.canvas.pack_forget()
+            time.sleep(1)
+        elif(location=="MENU"):
+            self.oMenuView.canvas.pack_forget()
+            time.sleep(2)
         self.jugadorHandler=None
         msg="Hola"
         pub.sendMessage("SELECCION-INICIO",msg=msg)
-    def toMenu(self):
-        self.oSelectionView.canvas.pack_forget()
+    def toMenu(self, location):
+        if location =="SELECTION":
+            self.jugadorHandler.setSelectedCharacter(self.oSelectionView.selectCharacter)
+            print(vars(self.jugadorHandler.getSelectedCharacter()))
+            self.oSelectionView.canvas.pack_forget()
+        elif location=="TIENDA":
+            # self.oTiendaView.hide()
+            self.oTiendaView.canvas.pack_forget()
+            # self.oTiendaView.mainFrame.pack_forget()
+            
+
         self.oMenuView.canvas.pack()
         self.oMenuView.show()
         
@@ -64,6 +83,18 @@ class ControllerMenu():
             colorList.append(colorDict)
             colorDict={}
         return colorList
+    
+    def changeView(self, event):
+        # canvas=event.widget
+        # canvas.itemconfigure(canvas.find_withtag("image_tag")[0], image=self.oMenuView.tiendaImageOver) 
+        # self.oMenuView.isSelected=(canvas,canvas.find_withtag("image_tag")[0])
+        self.oMenuView.canvas.pack_forget()
+
+
+        self.oTiendaView.canvas.pack()
+        self.oTiendaView.show()
+        
+        print("Hey you!!")
 
 
 

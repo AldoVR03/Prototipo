@@ -66,7 +66,7 @@ class MenuView():
         # Eventos
         self.canvas.tag_bind(self.tiendaImageReference, "<Enter>", self.change_image)  # Cuando el mouse entra en la imagen
         self.canvas.tag_bind(self.tiendaImageReference, "<Leave>", self.restore_image)
-        self.canvas.tag_bind(self.tiendaImageReference, "<Button-1>", self.changeView)
+        # self.canvas.tag_bind(self.tiendaImageReference, "<Button-1>", self.changeView)
         
 
         # Vars

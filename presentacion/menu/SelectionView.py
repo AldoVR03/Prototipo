@@ -73,6 +73,7 @@ class SelectionView():
         self.isSelected=None
         self.characterReferenceDict={}
         self.relateCanvasPersonaje={}
+        self.selectedCharacter=None
         # for positionStr in self.positionList:
         #     # self.characterImageList[positionStr].construirPersonaje()
         #     self.characterReferenceDict[positionStr]=self.canvasDict[positionStr].create_image(0,0,anchor="nw",image=self.characterSelectionImage,tags="image_tag")
@@ -199,7 +200,7 @@ class SelectionView():
         canvas.itemconfigure(canvas.find_withtag("image_tag")[0], image=self.characterSelectionImageOver) 
         self.isSelected=(canvas,canvas.find_withtag("image_tag")[0])
         print("Hey you!!")
-        print(self.relateCanvasPersonaje[canvas])
+        self.selectCharacter=self.relateCanvasPersonaje[canvas]
         self.contBtn.config(state="normal")
     def setCharacters(self,characterList):
         self.characterList=characterList

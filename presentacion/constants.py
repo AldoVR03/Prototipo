@@ -35,3 +35,5 @@ RUTA_IMAGEN_OJOS = ("images/ojos.png")
 RUTA_IMAGEN_ROPA = ("images/ropa.png")
 
 RUTA_IMAGEN_ESPADA= ("")
+
+BG_MARCO_TIENDA="#8f563b"
